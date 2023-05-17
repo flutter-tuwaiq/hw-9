@@ -8,33 +8,33 @@ Create an API using the Shelf framework and Supabase to handle account creation,
 
 ### Handling Account Creation
 
-Implement the `POST /create_account` endpoint to create a new user account in Supabase.
-- Validate the request body to ensure all required fields are provided (e.g., email, password).
-- Store the user's account information (e.g., email, password) in Supabase.
-- Return an appropriate response indicating the success or failure of the account creation process.
+<!-- Implement the `POST /create_account` endpoint to create a new user account in Supabase. -->
+<!-- - Validate the request body to ensure all required fields are provided (e.g., email, password). -->
+<!-- - Store the user's account information (e.g., email, password) in Supabase. -->
+<!-- - Return an appropriate response indicating the success or failure of the account creation process. -->
 
 ### Handling Account Verification
 
-Implement the `POST /verify_account` endpoint to verify a user's account in Supabase.
-- Validate the request body to ensure all required fields are provided (e.g., email, verificationCode).
-- Verify the provided verification code against the stored code in Supabase.
-- Update the account's verification status in the database upon successful verification.
-- Return an appropriate response indicating the success or failure of the verification process.
+<!-- Implement the `POST /verify_account` endpoint to verify a user's account in Supabase. -->
+<!-- - Validate the request body to ensure all required fields are provided (e.g., email, verificationCode). -->
+<!-- - Verify the provided verification code against the stored code in Supabase. -->
+<!-- - Update the account's verification status in the database upon successful verification. -->
+<!-- - Return an appropriate response indicating the success or failure of the verification process. -->
 
 ### Handling Password Reset
 
-Implement the `POST /reset_password` endpoint to allow users to reset their account password in Supabase.
-- Validate the request body to ensure all required fields are provided (e.g., email, newPassword).
+<!-- Implement the `POST /reset_password` endpoint to allow users to reset their account password in Supabase. -->
+<!-- - Validate the request body to ensure all required fields are provided (e.g., email, newPassword). -->
 - Verify the provided email against the registered email in Supabase.
-- Return an appropriate response indicating the success or failure of the password reset process.
+<!-- - Return an appropriate response indicating the success or failure of the password reset process. -->
 
 ### Handling Email Change
 
-Implement the `POST /change_email` endpoint to allow users to change their account email address in Supabase.
-- Validate the request body to ensure all required fields are provided (e.g., email, newEmail).
+<!-- Implement the `POST /change_email` endpoint to allow users to change their account email address in Supabase. -->
+<!-- - Validate the request body to ensure all required fields are provided (e.g., email, newEmail). -->
 - Verify the provided email against the registered email in Supabase.
 - Update the account's email address with the new email address.
-- Return an appropriate response indicating the success or failure of the email change process.
+<!-- - Return an appropriate response indicating the success or failure of the email change process. -->
 
 ### Code Quality and Best Practices
 
