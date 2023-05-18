@@ -1,0 +1,29 @@
+import 'dart:convert';
+
+import 'package:shelf/shelf.dart';
+import 'package:supabase/supabase.dart';
+
+import '../../ResponseMsg/CustomResponse.dart';
+import '../../Services/Supabase/supabaseEnv.dart';
+
+verficationEmail(Request req) async {
+   try {
+    
+     final body = json.decode(await req.readAsString());
+     await SupabaseEnv().supabase.auth.verifyOTP(
+           token: body['otp'],
+           type: OtpType.signup,
+           email: body['email'],
+         );
+
+
+
+     return CustomResponse()
+         .successResponse(msg: "Your account has been confirmed successfully!");
+   } catch (error) {
+     print(error);
+
+     return CustomResponse()
+         .errorResponse(msg: "Something wrong happend, please try again.");
+   }
+ }
