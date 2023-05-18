@@ -1,50 +1,49 @@
-# Assessment: Creating API with Shelf and Supabase
+A server app built using [Shelf](https://pub.dev/packages/shelf),
+configured to enable running with [Docker](https://www.docker.com/).
 
-## Task
+This sample code handles HTTP GET requests to `/` and `/echo/<message>`
 
-Create an API using the Shelf framework and Supabase to handle account creation, verification, password reset, and email change functionalities.
+# Running the sample
 
-## Requirements
+## Running with the Dart SDK
 
-### Handling Account Creation
+You can run the example with the [Dart SDK](https://dart.dev/get-dart)
+like this:
 
-Implement the `POST /create_account` endpoint to create a new user account in Supabase.
-- Validate the request body to ensure all required fields are provided (e.g., email, password).
-- Store the user's account information (e.g., email, password) in Supabase.
-- Return an appropriate response indicating the success or failure of the account creation process.
+```
+$ dart run bin/server.dart
+Server listening on port 8080
+```
 
-### Handling Account Verification
+And then from a second terminal:
+```
+$ curl http://0.0.0.0:8080
+Hello, World!
+$ curl http://0.0.0.0:8080/echo/I_love_Dart
+I_love_Dart
+```
 
-Implement the `POST /verify_account` endpoint to verify a user's account in Supabase.
-- Validate the request body to ensure all required fields are provided (e.g., email, verificationCode).
-- Verify the provided verification code against the stored code in Supabase.
-- Update the account's verification status in the database upon successful verification.
-- Return an appropriate response indicating the success or failure of the verification process.
+## Running with Docker
 
-### Handling Password Reset
+If you have [Docker Desktop](https://www.docker.com/get-started) installed, you
+can build and run with the `docker` command:
 
-Implement the `POST /reset_password` endpoint to allow users to reset their account password in Supabase.
-- Validate the request body to ensure all required fields are provided (e.g., email, newPassword).
-- Verify the provided email against the registered email in Supabase.
-- Return an appropriate response indicating the success or failure of the password reset process.
+```
+$ docker build . -t myserver
+$ docker run -it -p 8080:8080 myserver
+Server listening on port 8080
+```
 
-### Handling Email Change
+And then from a second terminal:
+```
+$ curl http://0.0.0.0:8080
+Hello, World!
+$ curl http://0.0.0.0:8080/echo/I_love_Dart
+I_love_Dart
+```
 
-Implement the `POST /change_email` endpoint to allow users to change their account email address in Supabase.
-- Validate the request body to ensure all required fields are provided (e.g., email, newEmail).
-- Verify the provided email against the registered email in Supabase.
-- Update the account's email address with the new email address.
-- Return an appropriate response indicating the success or failure of the email change process.
-
-### Code Quality and Best Practices
-
-- Write clean, modular, and well-documented code.
-- Follow Dart best practices and coding conventions.
-- Use appropriate error handling and logging techniques.
-
-Your task is to implement the API endpoints described above, following the given requirements and best practices. You should use the Shelf framework and the Supabase Dart SDK to interact with the Supabase backend.
-
-Please provide your solution by writing the code for the API endpoints along with any supporting code or explanations necessary to demonstrate your implementation.
-
-## Task
-18/5/2023 10:00 AM
+You should see the logging printed in the first terminal:
+```
+2021-05-06T15:47:04.620417  0:00:00.000158 GET     [200] /
+2021-05-06T15:47:08.392928  0:00:00.001216 GET     [200] /echo/I_love_Dart
+```
