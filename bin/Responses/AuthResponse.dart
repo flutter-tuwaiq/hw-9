@@ -8,7 +8,8 @@ import '../Service/SupaBaseEnv.dart';
 
 createResponse(Request request) async {
 
-    try {
+
+ try {
 
           final  body = json.decode(await request.readAsString());
       
@@ -17,29 +18,6 @@ createResponse(Request request) async {
                return Response(400, body: 'Missing email or password');
            } 
 
-           await SupaBaseEnv().supaBase.auth.admin.createUser(
-              AdminUserAttributes(email: body["email"],password:body["password"]),  
-            );
-              
-          return Response.ok("Done");
-
-    } catch (e) {
-      return Response.badRequest(body: "Check the input format   ");
-    }
-}
-
-
-
-verifyResponse(Request request) async {
-
-    try {
-
-          final  body = json.decode(await request.readAsString());
-      
-          if (body["email"] == "" || body["password"] == "")
-           {
-               return Response(400, body: 'Missing email or password');
-           } 
           final SupaBaseVaribal = SupaBaseEnv().supaBase.auth;
 
           UserResponse userInfo = await SupaBaseVaribal.admin.createUser(
@@ -52,11 +30,35 @@ verifyResponse(Request request) async {
                   .from("users")
                   .insert({"email":body["email"] , "id_auth":userInfo.user?.id});
 
-          return Response.ok("Done");
+              return Response.ok("Done");
 
     } catch (e) {
       return Response.badRequest(body: "Check the input format");
     }
+}
+
+
+
+verifyResponse(Request request) async {
+
+   
+        final Map body = jsonDecode(await request.readAsString());
+
+    // check if user enter email and otp
+    if (body["email"] == "" || body["otp"] == "") {
+      return Response.badRequest( body: "Check input",
+      );
+    }
+
+      await SupaBaseEnv().supaBase.auth.verifyOTP(
+          token: body["otp"],
+          type: OtpType.signup,
+          email: body["email"],
+        );
+
+
+        return Response.ok( "Confirm");
+
 
 }
 
