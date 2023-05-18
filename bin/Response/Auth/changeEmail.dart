@@ -18,7 +18,7 @@ changeEmail(Request req) async {
       return CustomResponse().errorResponse(msg: "sorry please provide the password ");
     }
 
-    // await SupabaseEnv().supabase.auth.signInWithPassword(email: body["email"],password: body["password"]);
+    await SupabaseEnv().supabase.auth.signInWithPassword(email: body["email"],password: body["password"]);
   
     await SupabaseEnv().supabase.auth.updateUser(UserAttributes(email: body["newEmail"]));
   

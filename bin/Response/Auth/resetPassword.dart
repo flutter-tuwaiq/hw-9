@@ -19,8 +19,6 @@ resetPassword(Request req) async {
     
     await SupabaseEnv().supabase.auth.signInWithPassword(email: body["email"],password: body["oldPassword"],);
     
-    await SupabaseEnv().supabase.auth.resetPasswordForEmail(body["email"]);
-
     await SupabaseEnv().supabase.auth.updateUser(UserAttributes(password: body["newPassword"]));
 
     return CustomResponse().successResponse(msg: "Successful password reset");
